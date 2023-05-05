@@ -9,7 +9,7 @@ class HelloAPIView(APIView):
 
     serializer_class = serializers.HelloSerializer
 
-    # Get Request
+    # Creating a Get Request function
     def get(self, request, format=None):
         """Return a list of API features."""
         an_apiview = [
@@ -23,6 +23,7 @@ class HelloAPIView(APIView):
         # So that it can be converted into JSON data.
         return Response({'message': 'Hello', 'an_apiview': an_apiview})
 
+    # Creating a POST request function
     def post(self, request):
         """Create a hello message with our name."""
         serializer = self.serializer_class(data = request.data)
