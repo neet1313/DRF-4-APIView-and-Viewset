@@ -9,5 +9,6 @@ router.register('hello-viewset', views.HelloViewset, basename='hello-viewset')
 
 urlpatterns = [
     # This is how API view is configured
-    path('hello-view', views.HelloAPIView.as_view())
+    path('hello-view', views.HelloAPIView.as_view()),
+    path('', include(router.urls))
 ]
