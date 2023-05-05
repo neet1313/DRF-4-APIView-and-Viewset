@@ -26,12 +26,17 @@ class HelloAPIView(APIView):
     # Creating a POST request function
     def post(self, request):
         """Create a hello message with our name."""
+
+        #--> 1 Data Deserialized 
         serializer = self.serializer_class(data = request.data)
 
+        #--> 2 Form Data Validated
         if serializer.is_valid():
             # Retrieving validated name field from the serializer.
             name=serializer.validated_data.get('name')
             message = f'Hello {name}'
+        
+        #--> 3 Converted into complex data type and posted to the DB
             return Response({'message': message})
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
