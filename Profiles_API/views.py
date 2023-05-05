@@ -1,3 +1,5 @@
+# APIViews allow us to write logic for our endpoints
+
 # GET-> fetch data
 # POST-> Post data to the DB
 # PUT-> Update data from DB
@@ -6,10 +8,11 @@
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, viewsets
 from Profiles_API import serializers
 
 
+# ---------------- API View ---------------------
 class HelloAPIView(APIView):
     """Testing API View"""
 
@@ -60,3 +63,19 @@ class HelloAPIView(APIView):
     def delete(self, request, pk=None):
         """To delete an object in DB"""
         return Response({'message': 'DELETE'})
+
+
+# ---------------- VIEWSET ------------------
+class HelloViewset(viewsets.ViewSet):
+    """Test API Viewset"""
+
+    def list(self, request):
+        """Return a Hello message."""
+
+        a_viewset = [
+            'Uses actions (list, create, retrieve, update, partial update)',
+            'Automatically maps to URLs using routers',
+            'Provides more functionality with less code'
+        ]
+
+        return Response({'message': 'Hello', 'a_viewset': a_viewset})
