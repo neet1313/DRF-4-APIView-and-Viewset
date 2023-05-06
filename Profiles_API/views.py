@@ -72,7 +72,7 @@ class HelloViewset(viewsets.ViewSet):
     serializer_class = serializers.HelloSerializer
 
     def list(self, request):
-        """Return a Hello message."""
+        """Get all records."""
 
         a_viewset = [
             'Uses actions (list, create, retrieve, update, partial update)',
@@ -83,7 +83,7 @@ class HelloViewset(viewsets.ViewSet):
         return Response({'message': 'Hello', 'a_viewset': a_viewset})
 
     def create(self, request):
-        """Create a new Hello message."""
+        """Create/insert a record"""
 
         serializer = self.serializer_class(data=request.data)
 
@@ -95,7 +95,7 @@ class HelloViewset(viewsets.ViewSet):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def retrieve(self, request, pk=None):
-        """Handle retrieving an object by its ID."""
+        """Get single record"""
         return Response({'http_method': 'GET'})
 
     def update(self, request, pk=None):
